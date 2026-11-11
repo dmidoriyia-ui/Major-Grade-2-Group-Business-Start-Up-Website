@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Protein Pods - Smart On-Campus Nutrition</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Base Reset & Variables */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+      --accent: #1e3a8a; /* Slate Navy */
+      --accent-light: #eff6ff;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 2rem;
+    }
+
+    /* Container Layout */
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Navigation Banner */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .header-badge {
+      background-color: var(--accent-light);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid #dbeafe;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 65px 0 45px;
+      text-align: center;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      background-color: #e2e8f0;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 760px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* Section Global Styles */
+    .section {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Card Grids */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    /* Standard Card Component */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Team Cards */
+    .team-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .team-avatar {
+      width: 60px;
+      height: 60px;
+      background-color: var(--accent-light);
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.15rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      border: 1px solid #dbeafe;
+    }
+
+    .team-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .team-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Static Footer */
+    footer {
+      background-color: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 32px 0;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <div class="brand-logo">Campus Protein Pods</div>
+      <div class="header-badge">Major Grade #2 Business Startup</div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero Pitch Section -->
+    <section class="hero">
+      <span class="hero-pill">Fresh On-Campus Nutrition</span>
+      <h1>Automated Cold-Chain Smart Lockers</h1>
+      <p>Campus Protein Pods delivers automated, temperature-controlled smart lockers stationed directly in high-traffic school hallways, giving busy students and athletes 30-second access to fresh, high-protein meals.</p>
+    </section>
+
+    <!-- Core Products / Model -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Product & Technology Model</h2>
+        <p class="section-subtitle">Refrigerated smart lockers built for student convenience and food safety</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <div class="card-tag">Location Advantage</div>
+          <h3>Direct Corridor Access</h3>
+          <p>Stationed in athletic hallways and corridor hubs, providing healthy fuel in 30 seconds without long cafeteria lines or leaving campus during 5-minute passing periods.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">IoT Hardware</div>
+          <h3>Refrigerated Pods</h3>
+          <p>Temperature-controlled smart lockers engineered for fresh Greek yogurt, protein wraps, and pre-made shakes, equipped with automated lockouts if cooling fluctuates.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Student Pricing</div>
+          <h3>$3.00 – $4.50 Price Floor</h3>
+          <p>Cashless mobile app integration offering nutritious, budget-friendly options tailored specifically to student allowances with built-in loyalty reward streaks.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PESTEL Analysis & Strategy -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Market Analysis & Strategy</h2>
+        <p class="section-subtitle">PESTEL insights and competitive differentiation framework</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">PESTEL Drivers</div>
+          <h3>Market Environment</h3>
+          <p>Driven by growing youth fitness trends and macro-tracking social habits. Complies with strict district food safety, FDA allergen standards, and efficient eco-friendly cooling power consumption.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Competitive Advantage</div>
+          <h3>Hybrid Quality & Access</h3>
+          <p>Sets us apart from traditional shelf-stable vending junk food by maintaining cold-chain freshness, fast hallway proximity, and affordable off-campus meal prices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Risks & Strategic Opportunities -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Risks & Strategic Opportunities</h2>
+        <p class="section-subtitle">Proactive risk mitigations and scaling pathways</p>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-tag">Risk Management</div>
+          <h3>Key Risk Mitigations</h3>
+          <p>Safety lockouts prevent spoilage during power failures. App telemetry monitors expiration dates to auto-discount near-term stock, and pods complement athletic hours after cafeteria closure.</p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Growth Scalability</div>
+          <h3>Expansion Opportunities</h3>
+          <p>Partnerships with athletic directors and booster clubs as official workout stations, recurring "Protein Pass" app subscriptions, and scaling to college dorms and gym complexes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Group Leadership Team -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Leadership Team</h2>
+        <p class="section-subtitle">Group members and project responsibilities</p>
+      </div>
+      <div class="grid-4">
+        <div class="team-card">
+          <div class="team-avatar">DA</div>
+          <h4>Daniel Adejuyigbe</h4>
+          <div class="team-role">Chief Executive Officer</div>
+          <div class="team-desc">Founder & Product Strategist</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">M2</div>
+          <h4>Group Member 2</h4>
+          <div class="team-role">Chief Technology Officer</div>
+          <div class="team-desc">Hardware & IoT Systems Lead</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">M3</div>
+          <h4>Group Member 3</h4>
+          <div class="team-role">Head of Product Design</div>
+          <div class="team-desc">UI/UX & App Integration</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">M4</div>
+          <h4>Group Member 4</h4>
+          <div class="team-role">Operations Manager</div>
+          <div class="team-desc">Compliance & Quality Control</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p class="footer-text">&copy; 2025 Campus Protein Pods. All rights reserved. Built for Major Grade #2 Group Business Project.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
